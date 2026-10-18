@@ -1,0 +1,84 @@
+[
+  {
+    "claim": "Сгенерировано не менее 15 угроз",
+    "kind": "json_path_count",
+    "args": {
+      "path": "artifacts/threat-dragon-model.json",
+      "json_pointer": "/threats",
+      "min_count": 15
+    },
+    "source": "prompts/threat_model_prompt.md#L120"
+  },
+  {
+    "claim": "Все 6 категорий STRIDE покрыты",
+    "kind": "json_assertion",
+    "args": {
+      "path": "artifacts/threat-dragon-model.json",
+      "expression": "[.threats[].stride_category] | unique | length == 6"
+    },
+    "source": "prompts/threat_model_prompt.md#L121"
+  },
+  {
+    "claim": "В каждой категории STRIDE не менее 2 угроз",
+    "kind": "json_assertion",
+    "args": {
+      "path": "artifacts/threat-dragon-model.json",
+      "expression": "[.threats[].stride_category] | group_by(.) | map(length) | length == 6 and min >= 2"
+    },
+    "source": "prompts/threat_model_prompt.md#L121"
+  },
+  {
+    "claim": "Каждая угроза привязана к существующей ячейке DFD",
+    "kind": "json_assertion",
+    "args": {
+      "path": "artifacts/threat-dragon-model.json",
+      "expression": "[.detail.diagrams[0].cells[].id] as $ids | all(.threats[]; .target as $t | any($ids[]; . == $t))"
+    },
+    "source": "prompts/threat_model_prompt.md#L122"
+  },
+  {
+    "claim": "Угрозы в ячейках диаграммы совпадают с корневым списком threats",
+    "kind": "json_assertion",
+    "args": {
+      "path": "artifacts/threat-dragon-model.json",
+      "expression": "([.detail.diagrams[0].cells[] | .data.threats // [] | .[].id] | sort) == ([.threats[].id] | sort)"
+    },
+    "source": "prompts/threat_model_prompt.md#L220"
+  },
+  {
+    "claim": "DFD содержит все 9 границ, 20 элементов и 31 поток",
+    "kind": "json_assertion",
+    "args": {
+      "path": "artifacts/threat-dragon-model.json",
+      "expression": ".detail.diagrams[0].cells | (map(select(.shape == \"trust-boundary-box\")) | length) >= 9 and (map(select(.shape == \"process\" or .shape == \"actor\" or .shape == \"store\")) | length) >= 20 and (map(select(.shape == \"flow\")) | length) >= 31"
+    },
+    "source": "prompts/threat_model_prompt.md#L219"
+  },
+  {
+    "claim": "TMR отражена: три канала, основной и резервный арбитр, потоки голосования",
+    "kind": "json_assertion",
+    "args": {
+      "path": "artifacts/threat-dragon-model.json",
+      "expression": "[.detail.diagrams[0].cells[].id] as $ids | [\"P-CH1\", \"P-CH2\", \"P-CH3\", \"P-ARB\", \"P-ARB2\", \"F-14\", \"F-15\", \"F-16\"] | all(.[]; . as $x | any($ids[]; . == $x))"
+    },
+    "source": "prompts/threat_model_prompt.md#L39"
+  },
+  {
+    "claim": "Для каждого потока указаны транспорт и порт",
+    "kind": "json_assertion",
+    "args": {
+      "path": "artifacts/threat-dragon-model.json",
+      "expression": "[.detail.diagrams[0].cells[] | select(.shape == \"flow\") | .data.protocol // \"\" | test(\"^(TCP|UDP)/[0-9]+\")] | all"
+    },
+    "source": "prompts/threat_model_prompt.md#L40"
+  },
+  {
+    "claim": "В модели не менее 10 разных CWE",
+    "kind": "json_assertion",
+    "args": {
+      "path": "artifacts/threat-dragon-model.json",
+      "expression": "[.threats[].cwe[]] | unique | length >= 10"
+    },
+    "source": "prompts/threat_model_prompt.md#L128"
+  }
+]
