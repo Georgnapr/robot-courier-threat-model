@@ -1,0 +1,3275 @@
+{
+  "version": "2.3.0",
+  "summary": {
+    "title": "Система управления автопарком роботов-курьеров (вариант 5)",
+    "owner": "",
+    "description": "Модель угроз STRIDE, итерация 1",
+    "id": 0
+  },
+  "detail": {
+    "contributors": [],
+    "reviewer": "",
+    "diagramTop": 1,
+    "threatTop": 18,
+    "diagrams": [
+      {
+        "version": "2.3.0",
+        "id": 0,
+        "title": "DFD уровня 0",
+        "description": "",
+        "diagramType": "STRIDE",
+        "thumbnail": "./public/content/images/thumbnail.stride.jpg",
+        "cells": [
+          {
+            "id": "TB-CORP",
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "position": {
+              "x": 20,
+              "y": 20
+            },
+            "size": {
+              "width": 470,
+              "height": 260
+            },
+            "attrs": {
+              "label": {
+                "text": "Корпоративная сеть (WMS, ERP), 172.16.0.0/16"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "Корпоративная сеть (WMS, ERP), 172.16.0.0/16",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "TB-OPS",
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "position": {
+              "x": 20,
+              "y": 680
+            },
+            "size": {
+              "width": 280,
+              "height": 260
+            },
+            "attrs": {
+              "label": {
+                "text": "VLAN 70 — АРМ операторов, 10.0.70.0/24"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "VLAN 70 — АРМ операторов, 10.0.70.0/24",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "TB-WIFI",
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "position": {
+              "x": 2140,
+              "y": 680
+            },
+            "size": {
+              "width": 280,
+              "height": 260
+            },
+            "attrs": {
+              "label": {
+                "text": "VLAN 100 — Wi-Fi роботов, 10.0.100.0/24"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "VLAN 100 — Wi-Fi роботов, 10.0.100.0/24",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "TB-DMZ",
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "position": {
+              "x": 550,
+              "y": 20
+            },
+            "size": {
+              "width": 470,
+              "height": 260
+            },
+            "attrs": {
+              "label": {
+                "text": "VLAN 10 — DMZ, 10.0.10.0/24"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "VLAN 10 — DMZ, 10.0.10.0/24",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "TB-APP",
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "position": {
+              "x": 1080,
+              "y": 20
+            },
+            "size": {
+              "width": 470,
+              "height": 430
+            },
+            "attrs": {
+              "label": {
+                "text": "VLAN 20 — микросервисы (Kubernetes), 10.0.20.0/24"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "VLAN 20 — микросервисы (Kubernetes), 10.0.20.0/24",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "TB-TMR",
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "position": {
+              "x": 1610,
+              "y": 20
+            },
+            "size": {
+              "width": 470,
+              "height": 600
+            },
+            "attrs": {
+              "label": {
+                "text": "VLAN 30 — контур TMR, 10.0.30.0/24"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "VLAN 30 — контур TMR, 10.0.30.0/24",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "TB-RGW",
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "position": {
+              "x": 2140,
+              "y": 20
+            },
+            "size": {
+              "width": 280,
+              "height": 260
+            },
+            "attrs": {
+              "label": {
+                "text": "VLAN 40 — шлюз роботов, 10.0.40.0/24"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "VLAN 40 — шлюз роботов, 10.0.40.0/24",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "TB-DATA",
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "position": {
+              "x": 1080,
+              "y": 680
+            },
+            "size": {
+              "width": 470,
+              "height": 260
+            },
+            "attrs": {
+              "label": {
+                "text": "VLAN 50 — данные, 10.0.50.0/24"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "VLAN 50 — данные, 10.0.50.0/24",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "TB-SEC",
+            "shape": "trust-boundary-box",
+            "zIndex": -1,
+            "position": {
+              "x": 1610,
+              "y": 680
+            },
+            "size": {
+              "width": 470,
+              "height": 260
+            },
+            "attrs": {
+              "label": {
+                "text": "VLAN 60 — безопасность и управление, 10.0.60.0/24"
+              }
+            },
+            "data": {
+              "type": "tm.BoundaryBox",
+              "name": "VLAN 60 — безопасность и управление, 10.0.60.0/24",
+              "isTrustBoundary": true,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "E-WMS",
+            "shape": "actor",
+            "zIndex": 20,
+            "position": {
+              "x": 80,
+              "y": 110
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "WMS\n172.16.5.10"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "WMS",
+              "description": "Складская система управления, источник заданий (REST API, OAuth 2.0)",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "E-ERP",
+            "shape": "actor",
+            "zIndex": 20,
+            "position": {
+              "x": 270,
+              "y": 110
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "ERP\n172.16.5.20"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "ERP",
+              "description": "Учётная система, запрашивает отчёты и статусы (REST API, OAuth 2.0)",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "E-OPER",
+            "shape": "actor",
+            "zIndex": 20,
+            "position": {
+              "x": 80,
+              "y": 770
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Оператор (АРМ)\n10.0.70.11–12"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "Оператор (АРМ)",
+              "description": "Оператор в VLAN 70, MFA и RBAC, работа через браузер (WSS)",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "E-ROBOT",
+            "shape": "actor",
+            "zIndex": 20,
+            "position": {
+              "x": 2200,
+              "y": 770
+            },
+            "size": {
+              "width": 160,
+              "height": 80
+            },
+            "attrs": {
+              "text": {
+                "text": "Робот-курьер ×50\n10.0.100.101–150"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Actor",
+              "name": "Робот-курьер ×50",
+              "description": "Парк из 50 роботов, mTLS-сертификат и ключ подписи в TPM 2.0",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "P-LB",
+            "shape": "process",
+            "zIndex": 10,
+            "position": {
+              "x": 625,
+              "y": 85
+            },
+            "size": {
+              "width": 130,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Балансировщик L4\nVIP 10.0.10.10"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Балансировщик L4",
+              "description": "Балансировка L4, TLS passthrough, резервирование API-шлюза",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "P-APIGW",
+            "shape": "process",
+            "zIndex": 10,
+            "position": {
+              "x": 815,
+              "y": 85
+            },
+            "size": {
+              "width": 130,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "API-шлюз\n10.0.10.21–22"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "API-шлюз",
+              "description": "Маршрутизация, проверка OpenAPI-схемы, OAuth 2.0 JWT, RBAC, rate limiting",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "TM-16",
+                  "threatId": "TM-16",
+                  "number": 16,
+                  "title": "TM-16. Обход RBAC и подмена claim в JWT",
+                  "type": "Elevation of privilege",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "10",
+                  "description": "Нарушитель с обычной ролью оператора подменяет claims JWT (alg=none либо изменение роли) и получает доступ к административным функциям шлюза и внутренним API. Последствия: Повышение привилегий до администратора системы управления парком, доступ к микросервисам и данным в обход INV5. CWE: CWE-269, CWE-863",
+                  "mitigation": "Строгая валидация JWT с фиксированным alg (RS256/ES256), проверка подписи, iss/aud/exp, отказ от доверия к клиентским claim о роли; авторизация на каждый маршрут по RBAC-матрице, jti-blacklist."
+                }
+              ]
+            }
+          },
+          {
+            "id": "P-INT",
+            "shape": "process",
+            "zIndex": 10,
+            "position": {
+              "x": 1155,
+              "y": 85
+            },
+            "size": {
+              "width": 130,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Интеграционный сервис\n10.0.20.0/24"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Интеграционный сервис",
+              "description": "Интеграция с WMS/ERP, публикация заданий в RabbitMQ",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "P-TASK",
+            "shape": "process",
+            "zIndex": 10,
+            "position": {
+              "x": 1345,
+              "y": 85
+            },
+            "size": {
+              "width": 130,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Сервис заданий\n10.0.20.0/24"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Сервис заданий",
+              "description": "Обработка заданий, работа с PostgreSQL, запуск цикла TMR",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "P-MON",
+            "shape": "process",
+            "zIndex": 10,
+            "position": {
+              "x": 1155,
+              "y": 255
+            },
+            "size": {
+              "width": 130,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Сервис мониторинга\n10.0.20.0/24"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Сервис мониторинга",
+              "description": "Состояние парка, детект потери связи > 5 с, генерация тревог",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "P-NOTIF",
+            "shape": "process",
+            "zIndex": 10,
+            "position": {
+              "x": 1345,
+              "y": 255
+            },
+            "size": {
+              "width": 130,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Сервис уведомлений\n10.0.20.0/24"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Сервис уведомлений",
+              "description": "Доставка уведомлений оператору через WebSocket",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "P-CH1",
+            "shape": "process",
+            "zIndex": 10,
+            "position": {
+              "x": 1685,
+              "y": 85
+            },
+            "size": {
+              "width": 130,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Канал TMR 1\n10.0.30.101"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Канал TMR 1",
+              "description": "Канал планирования CH1: x86, реализация A, ключ HMAC в TPM 2.0",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "P-CH2",
+            "shape": "process",
+            "zIndex": 10,
+            "position": {
+              "x": 1875,
+              "y": 85
+            },
+            "size": {
+              "width": 130,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Канал TMR 2\n10.0.30.102"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Канал TMR 2",
+              "description": "Канал планирования CH2: ARM, реализация B, ключ HMAC в TPM 2.0",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "P-CH3",
+            "shape": "process",
+            "zIndex": 10,
+            "position": {
+              "x": 1685,
+              "y": 255
+            },
+            "size": {
+              "width": 130,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Канал TMR 3\n10.0.30.103"
+              },
+              "body": {
+                "stroke": "#333333",
+                "strokeWidth": 1.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Канал TMR 3",
+              "description": "Канал планирования CH3: x86, реализация B, ключ HMAC в TPM 2.0",
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "P-ARB",
+            "shape": "process",
+            "zIndex": 10,
+            "position": {
+              "x": 1875,
+              "y": 255
+            },
+            "size": {
+              "width": 130,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Арбитр TMR (основной)\n10.0.30.100"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Арбитр TMR (основной)",
+              "description": "Голосование 2 из 3, подпись команд ключом из TPM 2.0",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "TM-09",
+                  "threatId": "TM-09",
+                  "number": 9,
+                  "title": "TM-09. Сокрытие отклонённых голосов арбитром",
+                  "type": "Repudiation",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "8",
+                  "description": "Арбитр отбрасывает невалидные и повторные голоса, но не журналирует их с достаточной детализацией, поэтому атакующий может систематически подделывать голоса, оставаясь незамеченным. Последствия: Атака на контур TMR не детектируется, отсутствуют доказательства для расследования и пересмотра решений. CWE: CWE-778, CWE-223",
+                  "mitigation": "Журналирование каждого отклонённого голоса (номер цикла, метка времени, id канала, причина) в SIEM по TCP/6514 TLS, счётчики отклонений с алертом при превышении порога, запись в append-only хранилище."
+                },
+                {
+                  "id": "TM-13",
+                  "threatId": "TM-13",
+                  "number": 13,
+                  "title": "TM-13. Отказ арбитра TMR при UDP-флуде",
+                  "type": "Denial of service",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "12",
+                  "description": "Нарушитель в VLAN 30 флудит UDP/8888 либо заваливает арбитр голосами с валидной формой, из-за чего цикл голосования не укладывается в 50 мс. Последствия: Нарушаются NFR1 и INV4: назначения не выдаются, при затяжном отказе требуется переход в безопасный режим. CWE: CWE-400, CWE-770",
+                  "mitigation": "Ограничение rate на UDP/8888 средствами nftables/DPI, приоритизация трафика каналов TMR (QoS DSCP), watchdog времени цикла с алертом и автоматическое переключение на резервный арбитр (active-standby ≤ 1 с)."
+                }
+              ]
+            }
+          },
+          {
+            "id": "P-ARB2",
+            "shape": "process",
+            "zIndex": 10,
+            "position": {
+              "x": 1685,
+              "y": 425
+            },
+            "size": {
+              "width": 130,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Арбитр TMR (резервный)\n10.0.30.99"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Арбитр TMR (резервный)",
+              "description": "Резервный арбитр (active-standby ≤ 1 с), репликация состояния голосования",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "TM-17",
+                  "threatId": "TM-17",
+                  "number": 17,
+                  "title": "TM-17. Компрометация резервного арбитра",
+                  "type": "Elevation of privilege",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "10",
+                  "description": "Нарушитель компрометирует резервный арбитр (10.0.30.99) через канал репликации TCP/8443 или слабые права узла, затем инициирует переключение и подписывает произвольные команды своим ключом. Последствия: Резервный арбитр становится основным и легитимно подписывает ложные назначения, обходя контроль TMR. CWE: CWE-269, CWE-863",
+                  "mitigation": "mTLS между арбитрами с pinning, подписанная и проверяемая цепочка состояния голосования, remote attestation узла по TPM 2.0 перед переключением, RBAC на узле и неизменяемая (immutable) конфигурация."
+                }
+              ]
+            }
+          },
+          {
+            "id": "P-RGW",
+            "shape": "process",
+            "zIndex": 10,
+            "position": {
+              "x": 2215,
+              "y": 85
+            },
+            "size": {
+              "width": 130,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Шлюз связи с роботами\n10.0.40.11–12"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Шлюз связи с роботами",
+              "description": "Проверка подписи арбитра, выдача команд по mTLS, приём телеметрии",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "TM-18",
+                  "threatId": "TM-18",
+                  "number": 18,
+                  "title": "TM-18. Обход проверки подписи арбитра на шлюзе роботов",
+                  "type": "Elevation of privilege",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "10",
+                  "description": "Ошибка реализации шлюза позволяет принять команду без валидной подписи арбитра (неверная обработка поля подписи либо отключённая проверка в debug-режиме). Последствия: Любой узел, достигший TCP/8443, может отправить роботам команду управления в обход INV1. CWE: CWE-347, CWE-863",
+                  "mitigation": "Fail-closed проверка подписи Ed25519/ECDSA ключом арбитра на каждую команду, отказ при отсутствии или невалидности подписи, запрет debug-режима в production, mTLS с pinning и подписанные сборки."
+                }
+              ]
+            }
+          },
+          {
+            "id": "P-CA",
+            "shape": "process",
+            "zIndex": 10,
+            "position": {
+              "x": 1685,
+              "y": 745
+            },
+            "size": {
+              "width": 130,
+              "height": 130
+            },
+            "attrs": {
+              "text": {
+                "text": "Внутренний УЦ + OCSP\n10.0.60.10"
+              },
+              "body": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Process",
+              "name": "Внутренний УЦ + OCSP",
+              "description": "Выпуск X.509 сертификатов, OCSP-респондер, ключ подписи в HSM/TPM",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "TM-12",
+                  "threatId": "TM-12",
+                  "number": 12,
+                  "title": "TM-12. Компрометация закрытого ключа внутреннего УЦ",
+                  "type": "Information disclosure",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "10",
+                  "description": "Нарушитель получает доступ к узлу УЦ/OCSP (10.0.60.10) и извлекает закрытый ключ подписи сертификатов, после чего выпускает доверенные сертификаты для любых узлов. Последствия: Потеря доверия PKI: поддельные mTLS-сертификаты позволяют выдать себя за любой сервис или робота, обходя INV1 и INV5. CWE: CWE-522, CWE-311",
+                  "mitigation": "Ключ УЦ в HSM/TPM 2.0 (non-exportable), подпись только промежуточным offline-CA, разделение ролей, контроль целостности узла, короткие сроки жизни сертификатов (≤ 90 дней) с автопродлением и OCSP stapling."
+                }
+              ]
+            }
+          },
+          {
+            "id": "D-PG",
+            "shape": "store",
+            "zIndex": 10,
+            "position": {
+              "x": 1135,
+              "y": 765
+            },
+            "size": {
+              "width": 170,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "PostgreSQL (задания, маршруты, журнал команд)\n10.0.50.11–12"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": ""
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "PostgreSQL (задания, маршруты, журнал команд)",
+              "description": "Primary + синхронная реплика, TLS verify-full, раздельные роли",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "TM-04",
+                  "threatId": "TM-04",
+                  "number": 4,
+                  "title": "TM-04. Несанкционированное изменение заданий в PostgreSQL",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "10",
+                  "description": "Злоумышленник, получивший сервисную учётную запись или доступ к трафику TCP/5432, изменяет или удаляет записи о заданиях, маршрутах и журнале команд. Последствия: Искажение назначений и маршрутов, потеря целостности журнала команд, невозможность расследования инцидента. CWE: CWE-89, CWE-306",
+                  "mitigation": "Раздельные роли PostgreSQL с минимальными правами (REVOKE UPDATE/DELETE для сервисных учёток), HMAC/SHA-256 контрольная сумма записей журнала команд, TLS 1.3 verify-full, pgAudit."
+                },
+                {
+                  "id": "TM-10",
+                  "threatId": "TM-10",
+                  "number": 10,
+                  "title": "TM-10. Утечка данных заданий и маршрутов из PostgreSQL",
+                  "type": "Information disclosure",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "12",
+                  "description": "Нарушитель получает доступ к БД (слабая аутентификация, отсутствие verify-full в TLS, избыточные права реплики) и выгружает данные заданий, адресов доставки и маршрутов. Последствия: Раскрытие логистических данных и сведений о клиентах, возможность подготовки физических атак на маршруты. CWE: CWE-311, CWE-200",
+                  "mitigation": "TLS 1.3 verify-full с проверкой клиентского сертификата, scram-sha-256, шифрование at rest (LUKS/pg_tde), row-level security, аудит pgAudit, репликация только между доверенными узлами."
+                }
+              ]
+            }
+          },
+          {
+            "id": "D-MQ",
+            "shape": "store",
+            "zIndex": 10,
+            "position": {
+              "x": 1325,
+              "y": 765
+            },
+            "size": {
+              "width": 170,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "RabbitMQ (очереди заданий и событий)\n10.0.50.21–23"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": ""
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "RabbitMQ (очереди заданий и событий)",
+              "description": "Кластер ×3, quorum-очереди, AMQPS, учётка на сервис",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "TM-05",
+                  "threatId": "TM-05",
+                  "number": 5,
+                  "title": "TM-05. Подмена сообщения в очереди RabbitMQ",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "8",
+                  "description": "Нарушитель с правами на брокер (слабая учётная запись vhost) публикует поддельные сообщения о заданиях и телеметрии в очередь, минуя сервис интеграции. Последствия: Микросервисы обрабатывают поддельные задания и события, данные в БД и в очереди расходятся. CWE: CWE-345, CWE-306",
+                  "mitigation": "AMQPS TLS 1.3 с проверкой сертификатов, отдельные vhost и учётные записи на сервис с минимальными правами (configure/write только своей очереди), Ed25519-подпись критичных сообщений, проверка message-id и durable-флагов."
+                },
+                {
+                  "id": "TM-14",
+                  "threatId": "TM-14",
+                  "number": 14,
+                  "title": "TM-14. Переполнение очереди RabbitMQ",
+                  "type": "Denial of service",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "12",
+                  "description": "Всплеск заданий или атака массовой публикации увеличивает очередь свыше 1000 сообщений; без backpressure брокер теряет сообщения или деградирует. Последствия: Задания теряются или задерживаются, интеграция с WMS нарушается, запускается автомасштабирование. CWE: CWE-400, CWE-770",
+                  "mitigation": "Quorum-очереди RabbitMQ (RAFT) ×3, лимиты queue length и lazy queues, publisher confirms, dead-letter queue, backpressure и алерт по глубине очереди, автомасштабирование по NFR2."
+                }
+              ]
+            }
+          },
+          {
+            "id": "D-AUDIT",
+            "shape": "store",
+            "zIndex": 10,
+            "position": {
+              "x": 1855,
+              "y": 765
+            },
+            "size": {
+              "width": 170,
+              "height": 90
+            },
+            "attrs": {
+              "text": {
+                "text": "Журнал аудита (SIEM)\n10.0.60.20"
+              },
+              "topLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": ""
+              },
+              "bottomLine": {
+                "stroke": "red",
+                "strokeWidth": 2.5,
+                "strokeDasharray": ""
+              }
+            },
+            "data": {
+              "type": "tm.Store",
+              "name": "Журнал аудита (SIEM)",
+              "description": "Append-only журнал, приём syslog/TLS TCP/6514, хранение ≥ 90 суток",
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "TM-07",
+                  "threatId": "TM-07",
+                  "number": 7,
+                  "title": "TM-07. Изменение или удаление журнала аудита",
+                  "type": "Repudiation",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "8",
+                  "description": "Сервис или администратор с правами на SIEM удаляет либо правит записи журнала, чтобы скрыть свои действия; режим только-для-добавления технически не обеспечен. Последствия: Невозможно доказать факт действий и атак, нарушается INV6 и требование хранения аудита ≥ 90 суток. CWE: CWE-778, CWE-284",
+                  "mitigation": "WORM/append-only хранилище (object lock), syslog по TCP/6514 TLS с подтверждением приёма, хеш-цепочка записей (SHA-256 prev-hash) с периодической внешней нотаризацией, запись только системным ролям."
+                },
+                {
+                  "id": "TM-11",
+                  "threatId": "TM-11",
+                  "number": 11,
+                  "title": "TM-11. Утечка содержимого журнала аудита",
+                  "type": "Information disclosure",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "score": "9",
+                  "description": "Журнал аудита содержит идентификаторы, IP-адреса и параметры команд; при избыточных правах на SIEM-приёмник эти данные выгружаются наружу. Последствия: Раскрытие структуры системы и учётных данных, облегчающее подготовку дальнейших атак. CWE: CWE-532, CWE-200",
+                  "mitigation": "RBAC на чтение журнала (отдельная роль только-чтение через SIEM), маскирование секретов при логировании (не логировать токены и ключи), TLS 1.3 для syslog и шифрование индексов SIEM."
+                }
+              ]
+            }
+          },
+          {
+            "id": "F-01",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "E-WMS"
+            },
+            "target": {
+              "cell": "P-LB"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-01\nTCP/443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-01. Новые задания",
+              "protocol": "TCP/443 HTTPS REST, TLS 1.3 + OAuth 2.0 JWT",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "TM-03",
+                  "threatId": "TM-03",
+                  "number": 3,
+                  "title": "TM-03. Повтор запроса WMS с украденным OAuth-токеном",
+                  "type": "Spoofing",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "12",
+                  "description": "Нарушитель, получивший client credentials или JWT WMS (например, из логов или конфигурации), повторяет запросы к API-шлюзу под видом WMS и создаёт фиктивные задания. Последствия: В очередь RabbitMQ и в БД попадают поддельные задания, парк роботов выполняет операции, не санкционированные WMS. CWE: CWE-294, CWE-287",
+                  "mitigation": "OAuth 2.0 client credentials с access-токеном ≤ 5 мин, проверка aud/iss/exp и mTLS между WMS и шлюзом, детект повторов по jti (blacklist), rate limiting на шлюзе."
+                },
+                {
+                  "id": "TM-15",
+                  "threatId": "TM-15",
+                  "number": 15,
+                  "title": "TM-15. HTTP-флуд на внешний REST API",
+                  "type": "Denial of service",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "score": "12",
+                  "description": "Нарушитель или скомпрометированный клиент отправляет массовые запросы на TCP/443 через API-шлюз, исчерпывая ресурсы шлюза и микросервисов. Последствия: p95 отклика превышает 200 мс, реальные задания WMS и ERP не обрабатываются. CWE: CWE-770, CWE-400",
+                  "mitigation": "Rate limiting и connection limiting на API-шлюзе (token bucket по client_id и по IP), квоты OAuth-клиентов, WAF по сигнатурам, circuit breaker на вызовы микросервисов."
+                }
+              ]
+            }
+          },
+          {
+            "id": "F-02",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "E-ERP"
+            },
+            "target": {
+              "cell": "P-LB"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-02\nTCP/443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-02. Запрос отчётов и статусов",
+              "protocol": "TCP/443 HTTPS REST, TLS 1.3 + OAuth 2.0 JWT",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-03",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "E-OPER"
+            },
+            "target": {
+              "cell": "P-LB"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-03\nTCP/443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-03. Действия оператора",
+              "protocol": "TCP/443 HTTPS, TLS 1.3 + MFA",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "TM-08",
+                  "threatId": "TM-08",
+                  "number": 8,
+                  "title": "TM-08. Отрицание действий оператора",
+                  "type": "Repudiation",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "Medium",
+                  "score": "9",
+                  "description": "Оператор АРМ выполняет критическое действие (экстренная остановка, изменение задания) и позже отрицает его, так как журнал фиксирует лишь факт аутентификации, а не привязку конкретной команды к личности. Последствия: Невозможно установить автора критического действия, расследование инцидентов затруднено. CWE: CWE-778, CWE-223",
+                  "mitigation": "Аудит каждого действия с привязкой к идентичности из JWT (sub + session id) и временем до мс, сквозной request-id, CMS/ЭП-подпись критичных действий оператора ключом со смарт-карты, запись в append-only SIEM."
+                }
+              ]
+            }
+          },
+          {
+            "id": "F-04",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-LB"
+            },
+            "target": {
+              "cell": "P-APIGW"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-04\nTCP/443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-04. Проксирование запросов",
+              "protocol": "TCP/443 TLS passthrough, TLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-05",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-APIGW"
+            },
+            "target": {
+              "cell": "P-INT"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-05\nTCP/8443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-05. Вызовы интеграционного API",
+              "protocol": "TCP/8443 HTTPS, mTLS",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-06",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-APIGW"
+            },
+            "target": {
+              "cell": "P-TASK"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-06\nTCP/8443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-06. Операции с заданиями",
+              "protocol": "TCP/8443 HTTPS, mTLS",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-07",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-APIGW"
+            },
+            "target": {
+              "cell": "P-MON"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-07\nTCP/8443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-07. Запрос состояния парка",
+              "protocol": "TCP/8443 HTTPS, mTLS",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-08",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-INT"
+            },
+            "target": {
+              "cell": "D-MQ"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-08\nTCP/5671",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-08. Публикация заданий",
+              "protocol": "TCP/5671 AMQPS, TLS 1.3 + учётка на сервис",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-09",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "D-MQ"
+            },
+            "target": {
+              "cell": "P-TASK"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-09\nTCP/5671",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-09. Получение заданий",
+              "protocol": "TCP/5671 AMQPS, TLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-10",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-TASK"
+            },
+            "target": {
+              "cell": "D-PG"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-10\nTCP/5432",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-10. Запись заданий и статусов",
+              "protocol": "TCP/5432 PostgreSQL, TLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-11",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "D-PG"
+            },
+            "target": {
+              "cell": "P-CH1"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-11\nTCP/5432",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-11. Снимок состояния цикла",
+              "protocol": "TCP/5432 PostgreSQL, TLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-12",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "D-PG"
+            },
+            "target": {
+              "cell": "P-CH2"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-12\nTCP/5432",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-12. Снимок состояния цикла",
+              "protocol": "TCP/5432 PostgreSQL, TLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-13",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "D-PG"
+            },
+            "target": {
+              "cell": "P-CH3"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-13\nTCP/5432",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-13. Снимок состояния цикла",
+              "protocol": "TCP/5432 PostgreSQL, TLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-14",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-CH1"
+            },
+            "target": {
+              "cell": "P-ARB"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-14\nUDP/8888",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-14. Голос канала 1",
+              "protocol": "UDP/8888 голос TMR, DTLS 1.3 + HMAC-SHA256",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "TM-01",
+                  "threatId": "TM-01",
+                  "number": 1,
+                  "title": "TM-01. Подделка голоса канала TMR",
+                  "type": "Spoofing",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "10",
+                  "description": "Нарушитель внутри VLAN 30 с IP-спуфингом адреса 10.0.30.101 отправляет на UDP/8888 голос от имени канала 1, чтобы вместе со скомпрометированным каналом 2 навязать арбитру ложное назначение. Последствия: Арбитр принимает ложное решение «2 из 3»; робот получает некорректное задание или маршрут. CWE: CWE-290, CWE-345",
+                  "mitigation": "DTLS 1.3 с взаимной аутентификацией по сертификатам X.509 каждого канала; HMAC-SHA256 на отдельном ключе канала в TPM 2.0 (tpm2-tss); отбрасывание голосов с повтором номера цикла и меткой вне окна 50 мс."
+                }
+              ]
+            }
+          },
+          {
+            "id": "F-15",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-CH2"
+            },
+            "target": {
+              "cell": "P-ARB"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-15\nUDP/8888",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-15. Голос канала 2",
+              "protocol": "UDP/8888 голос TMR, DTLS 1.3 + HMAC-SHA256",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-16",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-CH3"
+            },
+            "target": {
+              "cell": "P-ARB"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-16\nUDP/8888",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-16. Голос канала 3",
+              "protocol": "UDP/8888 голос TMR, DTLS 1.3 + HMAC-SHA256",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-17",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-ARB"
+            },
+            "target": {
+              "cell": "P-ARB2"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-17\nTCP/8443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-17. Репликация состояния голосования",
+              "protocol": "TCP/8443 gRPC, mTLS",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-18",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-ARB"
+            },
+            "target": {
+              "cell": "D-PG"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-18\nTCP/5432",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-18. Фиксация назначения",
+              "protocol": "TCP/5432 PostgreSQL, TLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-19",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-ARB"
+            },
+            "target": {
+              "cell": "P-RGW"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-19\nTCP/8443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-19. Подписанная команда",
+              "protocol": "TCP/8443 gRPC, mTLS + подпись арбитра",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "TM-06",
+                  "threatId": "TM-06",
+                  "number": 6,
+                  "title": "TM-06. Модификация подписанной команды арбитра в транзите",
+                  "type": "Tampering",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "10",
+                  "description": "Нарушитель в VLAN 30/40 изменяет поля gRPC-команды (приоритет задания, точку доставки) на TCP/8443, рассчитывая, что шлюз проверяет подпись после нормализации полей. Последствия: Робот получает изменённую команду, подпись которой формально валидна; нарушается целостность управления парком. CWE: CWE-347, CWE-345",
+                  "mitigation": "Подпись канонической (детерминированной) protobuf-сериализации ключом Ed25519/ECDSA P-256 арбитра из TPM 2.0; проверка подписи на шлюзе до разбора полей; mTLS gRPC с pinning сертификата арбитра."
+                }
+              ]
+            }
+          },
+          {
+            "id": "F-20",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-RGW"
+            },
+            "target": {
+              "cell": "E-ROBOT"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-20\nTCP/8443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-20. Команды управления",
+              "protocol": "TCP/8443 бинарный протокол команд, mTLS",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-21",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "E-ROBOT"
+            },
+            "target": {
+              "cell": "P-RGW"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "red",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-21\nUDP/9999",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-21. Телеметрия",
+              "protocol": "UDP/9999 телеметрия, DTLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": true,
+              "threats": [
+                {
+                  "id": "TM-02",
+                  "threatId": "TM-02",
+                  "number": 2,
+                  "title": "TM-02. Подделка телеметрии робота",
+                  "type": "Spoofing",
+                  "modelType": "STRIDE",
+                  "status": "Open",
+                  "severity": "High",
+                  "score": "12",
+                  "description": "Нарушитель в VLAN 100 подделывает DTLS-сессию UDP/9999, представляясь адресом 10.0.100.120, и шлёт ложную телеметрию с «нормальным» зарядом и статусом, чтобы скрыть фактический отказ робота. Последствия: Мониторинг показывает исправность неисправного робота, задания назначаются роботу, который не может их выполнить. CWE: CWE-290, CWE-345",
+                  "mitigation": "DTLS 1.3 с mTLS и привязкой сертификата робота к его идентификатору; проверка монотонных номеров пакетов и меток времени телеметрии; телеметрия не содержит полей, влияющих на команды (INV2)."
+                }
+              ]
+            }
+          },
+          {
+            "id": "F-22",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-RGW"
+            },
+            "target": {
+              "cell": "D-MQ"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-22\nTCP/5671",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-22. События телеметрии",
+              "protocol": "TCP/5671 AMQPS, TLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-23",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "D-MQ"
+            },
+            "target": {
+              "cell": "P-MON"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-23\nTCP/5671",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-23. События телеметрии",
+              "protocol": "TCP/5671 AMQPS, TLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-24",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-MON"
+            },
+            "target": {
+              "cell": "P-NOTIF"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-24\nTCP/8443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-24. Тревоги",
+              "protocol": "TCP/8443 HTTPS, mTLS",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-25",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-NOTIF"
+            },
+            "target": {
+              "cell": "P-APIGW"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-25\nTCP/8443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-25. Уведомления оператору",
+              "protocol": "TCP/8443 WebSocket, mTLS",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-26",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-APIGW"
+            },
+            "target": {
+              "cell": "E-OPER"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-26\nTCP/443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-26. Уведомления и состояние",
+              "protocol": "TCP/443 WSS, TLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-27",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-INT"
+            },
+            "target": {
+              "cell": "E-WMS"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-27\nTCP/443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-27. Статусы выполнения",
+              "protocol": "TCP/443 HTTPS REST, TLS 1.3 + OAuth 2.0",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-28",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-APIGW"
+            },
+            "target": {
+              "cell": "D-AUDIT"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-28\nTCP/6514",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-28. События доступа",
+              "protocol": "TCP/6514 syslog, TLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-29",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-ARB"
+            },
+            "target": {
+              "cell": "D-AUDIT"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-29\nTCP/6514",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-29. Решения и отклонённые голоса",
+              "protocol": "TCP/6514 syslog, TLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-30",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-RGW"
+            },
+            "target": {
+              "cell": "D-AUDIT"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-30\nTCP/6514",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-30. Команды и события связи",
+              "protocol": "TCP/6514 syslog, TLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          },
+          {
+            "id": "F-31",
+            "shape": "flow",
+            "zIndex": 40,
+            "connector": "smooth",
+            "source": {
+              "cell": "P-RGW"
+            },
+            "target": {
+              "cell": "P-CA"
+            },
+            "attrs": {
+              "line": {
+                "stroke": "#333333",
+                "targetMarker": {
+                  "name": "block"
+                },
+                "strokeDasharray": ""
+              }
+            },
+            "labels": [
+              {
+                "markup": [
+                  {
+                    "tagName": "ellipse",
+                    "selector": "labelBody"
+                  },
+                  {
+                    "tagName": "text",
+                    "selector": "labelText"
+                  }
+                ],
+                "attrs": {
+                  "labelText": {
+                    "text": "F-31\nTCP/443",
+                    "textAnchor": "middle",
+                    "textVerticalAnchor": "middle"
+                  },
+                  "labelBody": {
+                    "ref": "labelText",
+                    "refRx": "50%",
+                    "refRy": "60%",
+                    "fill": "#fff",
+                    "strokeWidth": 0
+                  }
+                },
+                "position": 0.5
+              }
+            ],
+            "data": {
+              "type": "tm.Flow",
+              "name": "F-31. Проверка отзыва сертификатов",
+              "protocol": "TCP/443 OCSP, TLS 1.3",
+              "isEncrypted": true,
+              "isPublicNetwork": false,
+              "isBidirectional": false,
+              "hasOpenThreats": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "threats": [
+    {
+      "id": "TM-01",
+      "title": "Подделка голоса канала TMR",
+      "stride_category": "S",
+      "target": "F-14",
+      "scenario": "Нарушитель внутри VLAN 30 с IP-спуфингом адреса 10.0.30.101 отправляет на UDP/8888 голос от имени канала 1, чтобы вместе со скомпрометированным каналом 2 навязать арбитру ложное назначение.",
+      "impact": "Арбитр принимает ложное решение «2 из 3»; робот получает некорректное задание или маршрут.",
+      "mitigation": "DTLS 1.3 с взаимной аутентификацией по сертификатам X.509 каждого канала; HMAC-SHA256 на отдельном ключе канала в TPM 2.0 (tpm2-tss); отбрасывание голосов с повтором номера цикла и меткой вне окна 50 мс.",
+      "cwe": [
+        "CWE-290",
+        "CWE-345"
+      ],
+      "severity": "Critical",
+      "likelihood": 2,
+      "impact_score": 5,
+      "invariants": [
+        "INV3"
+      ]
+    },
+    {
+      "id": "TM-02",
+      "title": "Подделка телеметрии робота",
+      "stride_category": "S",
+      "target": "F-21",
+      "scenario": "Нарушитель в VLAN 100 подделывает DTLS-сессию UDP/9999, представляясь адресом 10.0.100.120, и шлёт ложную телеметрию с «нормальным» зарядом и статусом, чтобы скрыть фактический отказ робота.",
+      "impact": "Мониторинг показывает исправность неисправного робота, задания назначаются роботу, который не может их выполнить.",
+      "mitigation": "DTLS 1.3 с mTLS и привязкой сертификата робота к его идентификатору; проверка монотонных номеров пакетов и меток времени телеметрии; телеметрия не содержит полей, влияющих на команды (INV2).",
+      "cwe": [
+        "CWE-290",
+        "CWE-345"
+      ],
+      "severity": "High",
+      "likelihood": 3,
+      "impact_score": 4,
+      "invariants": [
+        "INV2"
+      ]
+    },
+    {
+      "id": "TM-03",
+      "title": "Повтор запроса WMS с украденным OAuth-токеном",
+      "stride_category": "S",
+      "target": "F-01",
+      "scenario": "Нарушитель, получивший client credentials или JWT WMS (например, из логов или конфигурации), повторяет запросы к API-шлюзу под видом WMS и создаёт фиктивные задания.",
+      "impact": "В очередь RabbitMQ и в БД попадают поддельные задания, парк роботов выполняет операции, не санкционированные WMS.",
+      "mitigation": "OAuth 2.0 client credentials с access-токеном ≤ 5 мин, проверка aud/iss/exp и mTLS между WMS и шлюзом, детект повторов по jti (blacklist), rate limiting на шлюзе.",
+      "cwe": [
+        "CWE-294",
+        "CWE-287"
+      ],
+      "severity": "High",
+      "likelihood": 3,
+      "impact_score": 4,
+      "invariants": [
+        "INV5"
+      ]
+    },
+    {
+      "id": "TM-04",
+      "title": "Несанкционированное изменение заданий в PostgreSQL",
+      "stride_category": "T",
+      "target": "D-PG",
+      "scenario": "Злоумышленник, получивший сервисную учётную запись или доступ к трафику TCP/5432, изменяет или удаляет записи о заданиях, маршрутах и журнале команд.",
+      "impact": "Искажение назначений и маршрутов, потеря целостности журнала команд, невозможность расследования инцидента.",
+      "mitigation": "Раздельные роли PostgreSQL с минимальными правами (REVOKE UPDATE/DELETE для сервисных учёток), HMAC/SHA-256 контрольная сумма записей журнала команд, TLS 1.3 verify-full, pgAudit.",
+      "cwe": [
+        "CWE-89",
+        "CWE-306"
+      ],
+      "severity": "Critical",
+      "likelihood": 2,
+      "impact_score": 5,
+      "invariants": [
+        "INV5"
+      ]
+    },
+    {
+      "id": "TM-05",
+      "title": "Подмена сообщения в очереди RabbitMQ",
+      "stride_category": "T",
+      "target": "D-MQ",
+      "scenario": "Нарушитель с правами на брокер (слабая учётная запись vhost) публикует поддельные сообщения о заданиях и телеметрии в очередь, минуя сервис интеграции.",
+      "impact": "Микросервисы обрабатывают поддельные задания и события, данные в БД и в очереди расходятся.",
+      "mitigation": "AMQPS TLS 1.3 с проверкой сертификатов, отдельные vhost и учётные записи на сервис с минимальными правами (configure/write только своей очереди), Ed25519-подпись критичных сообщений, проверка message-id и durable-флагов.",
+      "cwe": [
+        "CWE-345",
+        "CWE-306"
+      ],
+      "severity": "High",
+      "likelihood": 2,
+      "impact_score": 4,
+      "invariants": [
+        "INV5"
+      ]
+    },
+    {
+      "id": "TM-06",
+      "title": "Модификация подписанной команды арбитра в транзите",
+      "stride_category": "T",
+      "target": "F-19",
+      "scenario": "Нарушитель в VLAN 30/40 изменяет поля gRPC-команды (приоритет задания, точку доставки) на TCP/8443, рассчитывая, что шлюз проверяет подпись после нормализации полей.",
+      "impact": "Робот получает изменённую команду, подпись которой формально валидна; нарушается целостность управления парком.",
+      "mitigation": "Подпись канонической (детерминированной) protobuf-сериализации ключом Ed25519/ECDSA P-256 арбитра из TPM 2.0; проверка подписи на шлюзе до разбора полей; mTLS gRPC с pinning сертификата арбитра.",
+      "cwe": [
+        "CWE-347",
+        "CWE-345"
+      ],
+      "severity": "Critical",
+      "likelihood": 2,
+      "impact_score": 5,
+      "invariants": [
+        "INV1"
+      ]
+    },
+    {
+      "id": "TM-07",
+      "title": "Изменение или удаление журнала аудита",
+      "stride_category": "R",
+      "target": "D-AUDIT",
+      "scenario": "Сервис или администратор с правами на SIEM удаляет либо правит записи журнала, чтобы скрыть свои действия; режим только-для-добавления технически не обеспечен.",
+      "impact": "Невозможно доказать факт действий и атак, нарушается INV6 и требование хранения аудита ≥ 90 суток.",
+      "mitigation": "WORM/append-only хранилище (object lock), syslog по TCP/6514 TLS с подтверждением приёма, хеш-цепочка записей (SHA-256 prev-hash) с периодической внешней нотаризацией, запись только системным ролям.",
+      "cwe": [
+        "CWE-778",
+        "CWE-284"
+      ],
+      "severity": "High",
+      "likelihood": 2,
+      "impact_score": 4,
+      "invariants": [
+        "INV6"
+      ]
+    },
+    {
+      "id": "TM-08",
+      "title": "Отрицание действий оператора",
+      "stride_category": "R",
+      "target": "F-03",
+      "scenario": "Оператор АРМ выполняет критическое действие (экстренная остановка, изменение задания) и позже отрицает его, так как журнал фиксирует лишь факт аутентификации, а не привязку конкретной команды к личности.",
+      "impact": "Невозможно установить автора критического действия, расследование инцидентов затруднено.",
+      "mitigation": "Аудит каждого действия с привязкой к идентичности из JWT (sub + session id) и временем до мс, сквозной request-id, CMS/ЭП-подпись критичных действий оператора ключом со смарт-карты, запись в append-only SIEM.",
+      "cwe": [
+        "CWE-778",
+        "CWE-223"
+      ],
+      "severity": "Medium",
+      "likelihood": 3,
+      "impact_score": 3,
+      "invariants": [
+        "INV6"
+      ]
+    },
+    {
+      "id": "TM-09",
+      "title": "Сокрытие отклонённых голосов арбитром",
+      "stride_category": "R",
+      "target": "P-ARB",
+      "scenario": "Арбитр отбрасывает невалидные и повторные голоса, но не журналирует их с достаточной детализацией, поэтому атакующий может систематически подделывать голоса, оставаясь незамеченным.",
+      "impact": "Атака на контур TMR не детектируется, отсутствуют доказательства для расследования и пересмотра решений.",
+      "mitigation": "Журналирование каждого отклонённого голоса (номер цикла, метка времени, id канала, причина) в SIEM по TCP/6514 TLS, счётчики отклонений с алертом при превышении порога, запись в append-only хранилище.",
+      "cwe": [
+        "CWE-778",
+        "CWE-223"
+      ],
+      "severity": "High",
+      "likelihood": 2,
+      "impact_score": 4,
+      "invariants": [
+        "INV3",
+        "INV6"
+      ]
+    },
+    {
+      "id": "TM-10",
+      "title": "Утечка данных заданий и маршрутов из PostgreSQL",
+      "stride_category": "I",
+      "target": "D-PG",
+      "scenario": "Нарушитель получает доступ к БД (слабая аутентификация, отсутствие verify-full в TLS, избыточные права реплики) и выгружает данные заданий, адресов доставки и маршрутов.",
+      "impact": "Раскрытие логистических данных и сведений о клиентах, возможность подготовки физических атак на маршруты.",
+      "mitigation": "TLS 1.3 verify-full с проверкой клиентского сертификата, scram-sha-256, шифрование at rest (LUKS/pg_tde), row-level security, аудит pgAudit, репликация только между доверенными узлами.",
+      "cwe": [
+        "CWE-311",
+        "CWE-200"
+      ],
+      "severity": "High",
+      "likelihood": 3,
+      "impact_score": 4,
+      "invariants": [
+        "INV5"
+      ]
+    },
+    {
+      "id": "TM-11",
+      "title": "Утечка содержимого журнала аудита",
+      "stride_category": "I",
+      "target": "D-AUDIT",
+      "scenario": "Журнал аудита содержит идентификаторы, IP-адреса и параметры команд; при избыточных правах на SIEM-приёмник эти данные выгружаются наружу.",
+      "impact": "Раскрытие структуры системы и учётных данных, облегчающее подготовку дальнейших атак.",
+      "mitigation": "RBAC на чтение журнала (отдельная роль только-чтение через SIEM), маскирование секретов при логировании (не логировать токены и ключи), TLS 1.3 для syslog и шифрование индексов SIEM.",
+      "cwe": [
+        "CWE-532",
+        "CWE-200"
+      ],
+      "severity": "Medium",
+      "likelihood": 3,
+      "impact_score": 3,
+      "invariants": [
+        "INV6"
+      ]
+    },
+    {
+      "id": "TM-12",
+      "title": "Компрометация закрытого ключа внутреннего УЦ",
+      "stride_category": "I",
+      "target": "P-CA",
+      "scenario": "Нарушитель получает доступ к узлу УЦ/OCSP (10.0.60.10) и извлекает закрытый ключ подписи сертификатов, после чего выпускает доверенные сертификаты для любых узлов.",
+      "impact": "Потеря доверия PKI: поддельные mTLS-сертификаты позволяют выдать себя за любой сервис или робота, обходя INV1 и INV5.",
+      "mitigation": "Ключ УЦ в HSM/TPM 2.0 (non-exportable), подпись только промежуточным offline-CA, разделение ролей, контроль целостности узла, короткие сроки жизни сертификатов (≤ 90 дней) с автопродлением и OCSP stapling.",
+      "cwe": [
+        "CWE-522",
+        "CWE-311"
+      ],
+      "severity": "Critical",
+      "likelihood": 2,
+      "impact_score": 5,
+      "invariants": [
+        "INV1",
+        "INV5"
+      ]
+    },
+    {
+      "id": "TM-13",
+      "title": "Отказ арбитра TMR при UDP-флуде",
+      "stride_category": "D",
+      "target": "P-ARB",
+      "scenario": "Нарушитель в VLAN 30 флудит UDP/8888 либо заваливает арбитр голосами с валидной формой, из-за чего цикл голосования не укладывается в 50 мс.",
+      "impact": "Нарушаются NFR1 и INV4: назначения не выдаются, при затяжном отказе требуется переход в безопасный режим.",
+      "mitigation": "Ограничение rate на UDP/8888 средствами nftables/DPI, приоритизация трафика каналов TMR (QoS DSCP), watchdog времени цикла с алертом и автоматическое переключение на резервный арбитр (active-standby ≤ 1 с).",
+      "cwe": [
+        "CWE-400",
+        "CWE-770"
+      ],
+      "severity": "High",
+      "likelihood": 3,
+      "impact_score": 4,
+      "invariants": [
+        "INV3",
+        "INV4"
+      ]
+    },
+    {
+      "id": "TM-14",
+      "title": "Переполнение очереди RabbitMQ",
+      "stride_category": "D",
+      "target": "D-MQ",
+      "scenario": "Всплеск заданий или атака массовой публикации увеличивает очередь свыше 1000 сообщений; без backpressure брокер теряет сообщения или деградирует.",
+      "impact": "Задания теряются или задерживаются, интеграция с WMS нарушается, запускается автомасштабирование.",
+      "mitigation": "Quorum-очереди RabbitMQ (RAFT) ×3, лимиты queue length и lazy queues, publisher confirms, dead-letter queue, backpressure и алерт по глубине очереди, автомасштабирование по NFR2.",
+      "cwe": [
+        "CWE-400",
+        "CWE-770"
+      ],
+      "severity": "High",
+      "likelihood": 3,
+      "impact_score": 4,
+      "invariants": [
+        "INV4"
+      ]
+    },
+    {
+      "id": "TM-15",
+      "title": "HTTP-флуд на внешний REST API",
+      "stride_category": "D",
+      "target": "F-01",
+      "scenario": "Нарушитель или скомпрометированный клиент отправляет массовые запросы на TCP/443 через API-шлюз, исчерпывая ресурсы шлюза и микросервисов.",
+      "impact": "p95 отклика превышает 200 мс, реальные задания WMS и ERP не обрабатываются.",
+      "mitigation": "Rate limiting и connection limiting на API-шлюзе (token bucket по client_id и по IP), квоты OAuth-клиентов, WAF по сигнатурам, circuit breaker на вызовы микросервисов.",
+      "cwe": [
+        "CWE-770",
+        "CWE-400"
+      ],
+      "severity": "Medium",
+      "likelihood": 4,
+      "impact_score": 3,
+      "invariants": [
+        "INV5"
+      ]
+    },
+    {
+      "id": "TM-16",
+      "title": "Обход RBAC и подмена claim в JWT",
+      "stride_category": "E",
+      "target": "P-APIGW",
+      "scenario": "Нарушитель с обычной ролью оператора подменяет claims JWT (alg=none либо изменение роли) и получает доступ к административным функциям шлюза и внутренним API.",
+      "impact": "Повышение привилегий до администратора системы управления парком, доступ к микросервисам и данным в обход INV5.",
+      "mitigation": "Строгая валидация JWT с фиксированным alg (RS256/ES256), проверка подписи, iss/aud/exp, отказ от доверия к клиентским claim о роли; авторизация на каждый маршрут по RBAC-матрице, jti-blacklist.",
+      "cwe": [
+        "CWE-269",
+        "CWE-863"
+      ],
+      "severity": "High",
+      "likelihood": 2,
+      "impact_score": 5,
+      "invariants": [
+        "INV5"
+      ]
+    },
+    {
+      "id": "TM-17",
+      "title": "Компрометация резервного арбитра",
+      "stride_category": "E",
+      "target": "P-ARB2",
+      "scenario": "Нарушитель компрометирует резервный арбитр (10.0.30.99) через канал репликации TCP/8443 или слабые права узла, затем инициирует переключение и подписывает произвольные команды своим ключом.",
+      "impact": "Резервный арбитр становится основным и легитимно подписывает ложные назначения, обходя контроль TMR.",
+      "mitigation": "mTLS между арбитрами с pinning, подписанная и проверяемая цепочка состояния голосования, remote attestation узла по TPM 2.0 перед переключением, RBAC на узле и неизменяемая (immutable) конфигурация.",
+      "cwe": [
+        "CWE-269",
+        "CWE-863"
+      ],
+      "severity": "Critical",
+      "likelihood": 2,
+      "impact_score": 5,
+      "invariants": [
+        "INV1",
+        "INV4"
+      ]
+    },
+    {
+      "id": "TM-18",
+      "title": "Обход проверки подписи арбитра на шлюзе роботов",
+      "stride_category": "E",
+      "target": "P-RGW",
+      "scenario": "Ошибка реализации шлюза позволяет принять команду без валидной подписи арбитра (неверная обработка поля подписи либо отключённая проверка в debug-режиме).",
+      "impact": "Любой узел, достигший TCP/8443, может отправить роботам команду управления в обход INV1.",
+      "mitigation": "Fail-closed проверка подписи Ed25519/ECDSA ключом арбитра на каждую команду, отказ при отсутствии или невалидности подписи, запрет debug-режима в production, mTLS с pinning и подписанные сборки.",
+      "cwe": [
+        "CWE-347",
+        "CWE-863"
+      ],
+      "severity": "Critical",
+      "likelihood": 2,
+      "impact_score": 5,
+      "invariants": [
+        "INV1"
+      ]
+    }
+  ]
+}
